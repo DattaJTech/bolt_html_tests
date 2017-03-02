@@ -1,0 +1,46 @@
+<html>
+<head>
+  <script type="text/javascript" src="http://cloud.boltiot.com/static/js/boltCommands.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	var isOn = False;
+    setKey('{{ApiKey}}','{{Name}}');
+	setDebug(False);
+	function changeText(msg){
+		if (msg == ("Forward") ){
+			digitalMultiWrite('1,2,3,4','LOW,HIGH,LOW,HIGH');
+		}
+		else if (msg == ("Left") ){
+			digitalMultiWrite('1,2,3,4','LOW,HIGH,LOW,LOW');
+		}
+		else if (msg == ("Right") ){
+			digitalMultiWrite('1,2,3,4','LOW,LOW,LOW,HIGH');
+		}
+		else if (msg == ("Reverse") ){
+			digitalMultiWrite('1,2,3,4','HIGH,LOW,HIGH,LOW');
+		}
+		else{
+			digitalMultiWrite('1,2,3,4','LOW,LOW,LOW,LOW');
+		}
+		document.getElementById("status").innerHTML = msg;
+	}
+</script>
+<center>
+  <img id="upArrow" src="http://images.all-free-download.com/images/graphiclarge/green_globe_up_arrow_560.jpg" onclick='changeText("Forward");' height="100" width="100"><br>
+  <div>
+	<div style="display:inline-block">
+		<img src="http://images.all-free-download.com/images/graphiclarge/green_globe_left_arrow_558.jpg" onclick='changeText("Left");' height="100" width="100">
+	</div>
+	<div style="display:inline-block">
+		<img src="http://icongal.com/gallery/image/99358/stop_button.png" onclick='changeText("Stop");' height="100" width="100">
+	</div>
+	<div style="display:inline-block; padding-top:5px">
+		<img src="http://images.all-free-download.com/images/graphicthumb/green_globe_right_arrow_559.jpg" onclick='changeText("Right");' height="100" width="100"><br>
+	</div>
+  </div>
+  <img src="http://images.all-free-download.com/images/graphiclarge/green_globe_down_arrow_557.jpg" onclick='changeText("Reverse");' height="100" width="100"><br>
+  <p id="status" style="font-size:32px">Robot Status </p>
+</center>
+</body>
+</html>
